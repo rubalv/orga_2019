@@ -142,8 +142,8 @@ NOTES:
  *   Max ops: 8
  *   Rating: 1
  */
-int bitAnd(int x, int y) {
-  return 2;
+int bitAnd(int x, int y) {	
+  return ~(~x|~y);
 }
 /*
  * bitXor - x^y using only ~ and &
@@ -153,7 +153,7 @@ int bitAnd(int x, int y) {
  *   Rating: 1
  */
 int bitXor(int x, int y) {
-  return 2;
+  return ~(x&y) & ~(~x&~y);
 }
 //2
 /*
@@ -164,7 +164,7 @@ int bitXor(int x, int y) {
  *   Rating: 2
  */
 int negate(int x) {
-  return 2;
+  return ~x+1;
 }
 /*
  * byteSwap - swaps the nth byte and the mth byte
