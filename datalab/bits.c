@@ -176,7 +176,15 @@ int negate(int x) {
  *  Rating: 2
  */
 int byteSwap(int x, int n, int m) {
-    return 2;
+	int dn = (n << 3);
+	int dm = (m << 3);
+	int maskn = 0xff << dn; //Mascara para obtener byte 'n'
+	int maskm = 0xff << dm; //Mascara para obtener byte 'm'
+	//Obtengo el byte con la mascara, lo muevo a la primer posicion
+	//y lo multiplico por 0xff para escapar los posibles 1's a la izq
+	int byten = ((maskn & x) >> dn) & 0xff;
+	int bytem = ((maskm & x) >> dm) & 0xff;
+	return (((x & ~maskn) | (bytem<<dn)) & ~maskm) | (byten<<dm);
 }
 /*
  * allOddBits - return 1 if all odd-numbered bits in word set to 1
